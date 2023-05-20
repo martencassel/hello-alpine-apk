@@ -1,0 +1,33 @@
+pkgname=cello
+pkgver="1"
+pkgrel=0
+pkgdesc="cello APK package"
+url="http://www.example.com"
+arch="all"
+license="FIXME"
+depends=""
+makedepends=""
+checkdepends=""
+install=""
+subpackages=""
+source="cello-1.0.tar.gz"
+builddir="$srcdir/"
+
+build() {
+        make
+}
+
+check() {
+        # Replace with proper check command(s)
+        :
+}
+
+package() {
+        mkdir -p "$pkgdir/usr/bin/"
+        make DESTDIR="$pkgdir" install
+        # install -m 755 hello-world.sh $pkgdir/usr/bin/hello-world.sh
+}
+
+sha512sums="
+87fa7f91580d5f6046db7612a26b3b8eed3c4a3f47408a5bc823b8c368bff59f41459ca42737e89431e8399d01eff0dd562352fe4b38bc157a3baf7dbef18429  cello-1.0.tar.gz
+"

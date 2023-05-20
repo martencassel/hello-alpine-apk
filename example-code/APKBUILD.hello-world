@@ -1,0 +1,32 @@
+pkgname=hello-world
+pkgver="1"
+pkgrel=0
+pkgdesc="Most simple APK package"
+url="http://www.example.com"
+arch="all"
+license="FIXME"
+depends=""
+makedepends=""
+checkdepends=""
+install=""
+subpackages=""
+source="hello-world-1.tar.gz"
+builddir="$srcdir/"
+
+build() {
+        :
+}
+
+check() {
+        # Replace with proper check command(s)
+        :
+}
+
+package() {
+        mkdir -p "$pkgdir/usr/bin/"
+        install -m 755 hello-world.sh $pkgdir/usr/bin/hello-world.sh
+}
+
+sha512sums="
+771e132d32e1c5c223b8b4b6a530668b79a41a7f108f94e6649c6f74be8f2bd5a07ec489da4d59493ec2713676758cfb6b1e28dfc88f5ecda005cdc77f8eef08  hello-world-1.tar.gz
+"
