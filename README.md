@@ -178,3 +178,7 @@ ERROR: No such package: .makedepends-cello
 ```# hello-alpine-apk
 # hello-alpine-apk
 # hello-alpine-apk
+
+# References
+
+https://rpm-packaging-guide.github.io/
