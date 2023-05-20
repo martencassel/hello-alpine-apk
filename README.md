@@ -125,6 +125,13 @@ $ /usr/bin/hello-world.sh
 Hello world
 ```
 
+
+# What is an APK ? 
+An APK package is a file containing other files and information about them needed by the system. 
+An Alpine APK package consists of a tar archive, which contains the files, and the package metadata file, 
+which contains metadata about the package. The apk package manager uses this file to determine dependencies,
+where to install files, and other information.
+
 # Building cello
 
 ```bash
