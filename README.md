@@ -1,5 +1,10 @@
+# Prerequisites
 
 ```bash
+git clone git@github.com:martencassel/hello-alpine-apk.git
+
+cd hello-alpine-apk/
+
 $ cat Dockerfile.builder
 
 FROM alpine:edge
@@ -10,6 +15,8 @@ $ docker build -t alpine:builder -f ./Dockerfile.builder .
 $ docker run -it -v $(pwd):/host alpine:builder
 
 ```
+
+# Your First APK Package
 
 ```bash
 pkgname=hello-world
@@ -45,8 +52,6 @@ sha512sums="
 771e132d32e1c5c223b8b4b6a530668b79a41a7f108f94e6649c6f74be8f2bd5a07ec489da4d59493ec2713676758cfb6b1e28dfc88f5ecda005cdc77f8eef08  hello-world-1.tar.gz
 "
 ```
-
-# hello-world
 
 ```bash
 $ abuild-keygen -an
@@ -120,7 +125,7 @@ $ /usr/bin/hello-world.sh
 Hello world
 ```
 
-# cello
+# Building cello
 
 ```bash
 /host/repo/main/cello # abuild -F checksum
