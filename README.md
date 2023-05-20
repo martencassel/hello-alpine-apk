@@ -193,4 +193,5 @@ ERROR: No such package: .makedepends-cello
 
 # References
 
+https://gitlab.alpinelinux.org/alpine/abuild/-/blob/master/sample.APKBUILD
 https://rpm-packaging-guide.github.io/
