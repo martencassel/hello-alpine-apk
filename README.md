@@ -69,35 +69,79 @@ sha512sums="
 771e132d32e1c5c223b8b4b6a530668b79a41a7f108f94e6649c6f74be8f2bd5a07ec489da4d59493ec2713676758cfb6b1e28dfc88f5ecda005cdc77f8eef08  hello-world-1.tar.gz
 "
 ```
+# What is a APKBUILD File ? 
 
-# Setup the docker environment
+APKBUILD is a file that contains the scripts that are used in order 
+to build Alpine Packages using the abuild tool.
+It contains "recipes" on how something should be built and compiled. 
+This is used when building Alpine Packages from source.
+The abuild script reads the APKBUILD file and executes the steps needed to create a package.
 
-To simplify, clone this repository and build the docker image, then run it.
+
+# APK Packageing Workspace
+
+To setup a directory layout that is the APK packaging workspace,
+
+First launch the docker container shell,
+```bash
+$ make builder-shell
+
+/host $
+
+/host $ mkdir -p ~/apkbuild/main/
+
+/host $ tree ~/apkbuild/
+
+/root/apkbuild/
+└── main
+
+1 directories, 0 files
+```
+Then copy the hello-world build specification file, APKBUILD into this directory tree from the git repository examples folder,
 
 ```bash
+/host $ cp /host/example-code/APKBUILD.hello-world ~/apkbuild/main/APKBUILD
+/host $ tree ~/apkbuild/
+/root/apkbuild/
+└── main
+    ├── APKBUILD
 
-git clone git@github.com:martencassel/hello-alpine-apk.git
-cd hello-alpine-apk/
-
-docker build -t alpine:builder -f ./Dockerfile.builder .
+1 directories, 2 files
+/host #
 ```
 
-```bash
-docker run -it -v $(pwd):/host alpine:builder
-```
+
+# Generate a keypair
+
+Building a package, requires a keypair that is used to sign the APK package and APKINDEX file.
+Run the following command to create a keypair in ~/.abuild/ directory,
 
 ```bash
-$ abuild-keygen -an
+/host $ abuild-keygen -an
 $ ls -lt ~/.abuild/
 total 8
 -rw-------    1 root     root          3272 May 20 05:30 -64685ae9.rsa
 -rw-r--r--    1 root     root           800 May 20 05:30 -64685ae9.rsa.pub
 ```
 
+# Prepare source code
+
+We need to have the source code archive available in the build directory tree,
+Copy it from the example folder
+
 ```bash
-cd /host/repo/main/hello-world/
-tar czvf hello-world-1.tar.gz -C hello-world-1/ .
+/host $ cp /host/example-code/hello-world-1.tar.gz ~/apkbuild/main/
+/host $ tree ~/apkbuild/main/
+/root/apkbuild/main/
+├── APKBUILD
+└── hello-world-1.tar.gz
+
+0 directories, 2 files
+/host $
 ```
+# Add a checksum to the APKBUILD file
+
+Before building, we need to add a checksum using the abuild command,
 
 ```bash
 /host/repo/main/hello-world # abuild -F checksum
