@@ -148,15 +148,21 @@ Copy it from the example folder
 Before building, we need to add a checksum using the abuild command,
 
 ```bash
-/host/repo/main/hello-world # abuild -F checksum
->>> hello-world: Updating the sha512sums in /host/repo/main/hello-world/APKBUILD...
+/host $ cd /host/apkbuild/main/
+
+/host/apkbuild/main $ 
 ```
 
 ```bash
-/host/repo/main/hello-world # abuild -Fr
+/host/apkbuild/main $abuild -F checksum
+>>> hello-world: Updating the sha512sums in /host/apkbuild/main/hello-world/APKBUILD...
+```
+
+```bash
+/host/apkbuild/main/hello-world $ abuild -Fr
 
 >>> hello-world: Building main/hello-world 1-r0 (using abuild 3.11.0-r1) started Sat, 20 May 2023 05:36:34 +0000
->>> hello-world: Checking sanity of /host/repo/main/hello-world/APKBUILD...
+>>> hello-world: Checking sanity of /host/apkbuild/main/hello-world/APKBUILD...
 >>> WARNING: hello-world: No maintainer
 >>> hello-world: Analyzing dependencies...
 >>> hello-world: Installing for build: build-base
@@ -169,7 +175,7 @@ OK: 266 MiB in 65 packages
 >>> hello-world: Cleaning up pkgdir
 >>> hello-world: Checking sha512sums...
 hello-world-1.tar.gz: OK
->>> hello-world: Unpacking /host/repo/main/hello-world/hello-world-1.tar.gz...
+>>> hello-world: Unpacking /host/apkbuild/main/hello-world/hello-world-1.tar.gz...
 >>> hello-world: Running postcheck for hello-world
 >>> hello-world: Preparing package hello-world...
 >>> hello-world: Stripping binaries
