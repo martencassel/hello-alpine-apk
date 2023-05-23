@@ -1,22 +1,34 @@
+# Alpine Linux Packaging Guide
+
+## Introduction
+
+This Alpine APK Packaging Guide documents:
+
+**How to prepare source code for packaging into an APK**
+
 # Prerequisites
 
-```bash
-git clone git@github.com:martencassel/hello-alpine-apk.git
+To follow this tutorial you need the tools mentioned below:
 
-cd hello-alpine-apk/
+* Docker 
 
-$ cat Dockerfile.builder
+* Git 
 
-FROM alpine:edge
-RUN apk update && apk add bash vim alpine-sdk
+# Why Package Software with APK ? 
 
-$ docker build -t alpine:builder -f ./Dockerfile.builder .
+The APK Package Manager (Alpine Package keeper) is a package management system that runs on Alpine Linux.
+APK makes it easier for you to consume, distribute, manage, and update software that you create for Alpine Linux. The Alpine Linux distribution has a offical source of packages at https://pkgs.alpinelinux.org/.
 
-$ docker run -it -v $(pwd):/host alpine:builder
+With APK, you can:
 
-```
+**Install, reinstall, remove, upgrade and verify packages**
+
+**Use metadata to describe packages, their installation details, and so on.**
+
+**Digitally sign your packages**
 
 # Your First APK Package
+Here is a complete, working APKBUILD file with many things skipped and simplified:.
 
 ```bash
 pkgname=hello-world
@@ -53,19 +65,43 @@ sha512sums="
 "
 ```
 
+# Setup the docker environment
+
+To simplify, clone this repository and build the docker image, then run it.
+
+```bash
+
+git clone git@github.com:martencassel/hello-alpine-apk.git
+cd hello-alpine-apk/
+
+docker build -t alpine:builder -f ./Dockerfile.builder .
+```
+
+```bash
+docker run -it -v $(pwd):/host alpine:builder
+```
+
 ```bash
 $ abuild-keygen -an
 $ ls -lt ~/.abuild/
 total 8
 -rw-------    1 root     root          3272 May 20 05:30 -64685ae9.rsa
 -rw-r--r--    1 root     root           800 May 20 05:30 -64685ae9.rsa.pub
+```
 
+```bash
 cd /host/repo/main/hello-world/
 tar czvf hello-world-1.tar.gz -C hello-world-1/ .
+```
 
+```bash
 /host/repo/main/hello-world # abuild -F checksum
 >>> hello-world: Updating the sha512sums in /host/repo/main/hello-world/APKBUILD...
+```
+
+```bash
 /host/repo/main/hello-world # abuild -Fr
+
 >>> hello-world: Building main/hello-world 1-r0 (using abuild 3.11.0-r1) started Sat, 20 May 2023 05:36:34 +0000
 >>> hello-world: Checking sanity of /host/repo/main/hello-world/APKBUILD...
 >>> WARNING: hello-world: No maintainer
@@ -99,7 +135,9 @@ hello-world-1.tar.gz: OK
 OK: 266 MiB in 64 packages
 >>> hello-world: Updating the main/x86_64 repository index...
 >>> hello-world: Signing the index...
+```
 
+```bash
 $ tree ~/packages/
 /root/packages/
 └── main
@@ -108,19 +146,25 @@ $ tree ~/packages/
         └── hello-world-1-r0.apk
 
 2 directories, 2 files
+```
 
+```bash
 $ tar tvf ~/packages/main/x86_64/hello-world-1-r0.apk
 -rw-r--r-- 0/0             512 2023-05-20 05:36 .SIGN.RSA.-64685c04.rsa.pub
 -rw-r--r-- root/root       415 2023-05-20 05:36 .PKGINFO
 drwxr-xr-x root/root         0 2023-05-20 05:36 usr/
 drwxr-xr-x root/root         0 2023-05-20 05:36 usr/bin/
 -rwxr-xr-x root/root        29 2023-05-20 05:36 usr/bin/hello-world.sh
+```
 
+```bash
 $ apk add --allow-untrusted ~/packages/main/x86_64/hello-world-1-r0.apk
 (1/1) Installing hello-world (1-r0)
 Executing busybox-1.36.0-r5.trigger
 OK: 267 MiB in 65 packages
+```
 
+```bash
 $ /usr/bin/hello-world.sh
 Hello world
 ```
