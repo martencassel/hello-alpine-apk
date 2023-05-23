@@ -148,34 +148,34 @@ Copy it from the example folder
 Before building, we need to add a checksum using the abuild command,
 
 ```bash
-/host $ cd /host/apkbuild/main/
+/host $ cd ~/apkbuild/main/
 
 /host/apkbuild/main $ 
 ```
 
 ```bash
 /host/apkbuild/main $abuild -F checksum
->>> hello-world: Updating the sha512sums in /host/apkbuild/main/hello-world/APKBUILD...
+>>> hello-world: Updating the sha512sums in /root/apkbuild/main/APKBUILD...
 ```
 
 ```bash
-/host/apkbuild/main/hello-world $ abuild -Fr
+~/apkbuild/main $ abuild -Fr
 
->>> hello-world: Building main/hello-world 1-r0 (using abuild 3.11.0-r1) started Sat, 20 May 2023 05:36:34 +0000
->>> hello-world: Checking sanity of /host/apkbuild/main/hello-world/APKBUILD...
+>>> hello-world: Building apkbuild/hello-world 1-r0 (using abuild 3.11.0-r1) started Tue, 23 May 2023 18:02:08 +0000
+>>> hello-world: Checking sanity of /root/apkbuild/main/APKBUILD...
 >>> WARNING: hello-world: No maintainer
 >>> hello-world: Analyzing dependencies...
 >>> hello-world: Installing for build: build-base
-WARNING: opening /root/packages//main: No such file or directory
+WARNING: opening /root/packages//apkbuild: No such file or directory
 fetch https://dl-cdn.alpinelinux.org/alpine/edge/main/x86_64/APKINDEX.tar.gz
 fetch https://dl-cdn.alpinelinux.org/alpine/edge/community/x86_64/APKINDEX.tar.gz
-(1/1) Installing .makedepends-hello-world (20230520.053636)
+(1/1) Installing .makedepends-hello-world (20230523.180210)
 OK: 266 MiB in 65 packages
 >>> hello-world: Cleaning up srcdir
 >>> hello-world: Cleaning up pkgdir
 >>> hello-world: Checking sha512sums...
 hello-world-1.tar.gz: OK
->>> hello-world: Unpacking /host/apkbuild/main/hello-world/hello-world-1.tar.gz...
+>>> hello-world: Unpacking /root/apkbuild/main/hello-world-1.tar.gz...
 >>> hello-world: Running postcheck for hello-world
 >>> hello-world: Preparing package hello-world...
 >>> hello-world: Stripping binaries
@@ -186,14 +186,16 @@ hello-world-1.tar.gz: OK
 >>> hello-world: Compressing data...
 >>> hello-world: Create checksum...
 >>> hello-world: Create hello-world-1-r0.apk
->>> hello-world: Build complete at Sat, 20 May 2023 05:36:36 +0000 elapsed time 0h 0m 2s
+>>> hello-world: Build complete at Tue, 23 May 2023 18:02:10 +0000 elapsed time 0h 0m 2s
 >>> hello-world: Cleaning up srcdir
 >>> hello-world: Cleaning up pkgdir
 >>> hello-world: Uninstalling dependencies...
-(1/1) Purging .makedepends-hello-world (20230520.053636)
+(1/1) Purging .makedepends-hello-world (20230523.180210)
 OK: 266 MiB in 64 packages
->>> hello-world: Updating the main/x86_64 repository index...
+>>> hello-world: Updating the apkbuild/x86_64 repository index...
 >>> hello-world: Signing the index...
+~/apkbuild/main #
+
 ```
 
 ```bash
@@ -208,16 +210,16 @@ $ tree ~/packages/
 ```
 
 ```bash
-$ tar tvf ~/packages/main/x86_64/hello-world-1-r0.apk
--rw-r--r-- 0/0             512 2023-05-20 05:36 .SIGN.RSA.-64685c04.rsa.pub
--rw-r--r-- root/root       415 2023-05-20 05:36 .PKGINFO
-drwxr-xr-x root/root         0 2023-05-20 05:36 usr/
-drwxr-xr-x root/root         0 2023-05-20 05:36 usr/bin/
--rwxr-xr-x root/root        29 2023-05-20 05:36 usr/bin/hello-world.sh
+~/apkbuild/main $ $tar tvf ~/packages/apkbuild/x86_64/hello-world-1-r0.apk
+-rw-r--r-- 0/0             512 2023-05-23 18:01 .SIGN.RSA.-646cff41.rsa.pub
+-rw-r--r-- root/root       415 2023-05-23 18:01 .PKGINFO
+drwxr-xr-x root/root         0 2023-05-23 18:01 usr/
+drwxr-xr-x root/root         0 2023-05-23 18:01 usr/bin/
+-rwxr-xr-x root/root        29 2023-05-23 18:01 usr/bin/hello-world.sh
 ```
 
 ```bash
-$ apk add --allow-untrusted ~/packages/main/x86_64/hello-world-1-r0.apk
+$ apk add --allow-untrusted ~/packages/apkbuild/x86_64/hello-world-1-r0.apk
 (1/1) Installing hello-world (1-r0)
 Executing busybox-1.36.0-r5.trigger
 OK: 267 MiB in 65 packages
