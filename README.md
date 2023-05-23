@@ -7,7 +7,8 @@ and tries to explain the basics of packaging alpine packages.
 
 This Alpine APK Packaging Guide documents:
 
-**How to prepare source code for packaging into an APK**
+**How to package source code into an APK**
+This is for software developers who need to package software into Alpine Linux APKs.
 
 # Prerequisites
 
