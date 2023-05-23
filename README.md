@@ -85,7 +85,11 @@ To setup a directory layout that is the APK packaging workspace,
 First launch the docker container shell,
 ```bash
 $ make builder-shell
+```
 
+Then create the directory tree,
+
+```bash
 /host $
 
 /host $ mkdir -p ~/apkbuild/main/
@@ -97,7 +101,7 @@ $ make builder-shell
 
 1 directories, 0 files
 ```
-Then copy the hello-world build specification file, APKBUILD into this directory tree from the git repository examples folder,
+The sample APKBUILD file shown above, exists in this repository in the example-code directory.
 
 ```bash
 /host $ cp /host/example-code/APKBUILD.hello-world ~/apkbuild/main/APKBUILD
