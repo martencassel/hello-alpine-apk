@@ -1,4 +1,7 @@
-# Alpine Linux Packaging Guide
+# Unofficial Alpine Linux Packaging Guide
+
+This guide borrows from  the RPM Packaging Guide
+and tries to explain the basics of packaging alpine packages.
 
 ## Introduction
 
