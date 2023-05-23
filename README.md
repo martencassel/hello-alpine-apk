@@ -78,7 +78,7 @@ This is used when building Alpine Packages from source.
 The abuild script reads the APKBUILD file and executes the steps needed to create a package.
 
 
-# APK Packageing Workspace
+# APK Packaging Workspace
 
 To setup a directory layout that is the APK packaging workspace,
 
