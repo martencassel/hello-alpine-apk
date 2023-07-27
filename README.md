@@ -150,11 +150,11 @@ Before building, we need to add a checksum using the abuild command,
 ```bash
 /host $ cd ~/apkbuild/main/
 
-/host/apkbuild/main $ 
+/host/apkbuild/main$ 
 ```
 
 ```bash
-/host/apkbuild/main $abuild -F checksum
+/host/apkbuild/main $ abuild -F checksum
 >>> hello-world: Updating the sha512sums in /root/apkbuild/main/APKBUILD...
 ```
 
@@ -210,7 +210,7 @@ $ tree ~/packages/
 ```
 
 ```bash
-~/apkbuild/main $ $tar tvf ~/packages/apkbuild/x86_64/hello-world-1-r0.apk
+~/apkbuild/main $ tar tvf ~/packages/apkbuild/x86_64/hello-world-1-r0.apk
 -rw-r--r-- 0/0             512 2023-05-23 18:01 .SIGN.RSA.-646cff41.rsa.pub
 -rw-r--r-- root/root       415 2023-05-23 18:01 .PKGINFO
 drwxr-xr-x root/root         0 2023-05-23 18:01 usr/
